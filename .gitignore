@@ -1,0 +1,16 @@
+# Build folders
+bin/
+obj/
+
+# Executable and intermediate files
+*.exe
+*.o
+*.obj
+*.log
+*.dll
+
+# IDE-specific files
+*.depend
+*.layout
+.vscode/
+.DS_Store
