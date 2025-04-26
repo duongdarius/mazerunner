@@ -7,7 +7,6 @@ obj/
 *.o
 *.obj
 *.log
-*.dll
 
 # IDE-specific files
 *.depend
