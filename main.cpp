@@ -90,6 +90,7 @@ int main(int argc, char* argv[]) {
     bool gameOverPending = false;
     bool mazeLoaded = false;
     bool gameWon = false;
+    bool gameLost = false;
     int selectedOption = 0;
     int currentLevel = 1;
 
@@ -121,14 +122,13 @@ int main(int argc, char* argv[]) {
                         player.SetWindowSize(screenWidth, screenHeight);
                         player.Init(renderer);
 
-                        if (currentLevel == 1) {
-    surf = IMG_Load("C:\\Projects\\SDL\\MazeRunner\\assets\\Scorpio_walk.png");
-} else {
-    surf = IMG_Load("C:\\Projects\\SDL\\MazeRunner\\assets\\Mummy_walk.png");
-}
-enemyTex = SDL_CreateTextureFromSurface(renderer, surf);
-SDL_FreeSurface(surf);
+                        if (currentLevel == 1)
+                            surf = IMG_Load("C:\\Projects\\SDL\\MazeRunner\\assets\\Scorpio_walk.png");
+                        else
+                            surf = IMG_Load("C:\\Projects\\SDL\\MazeRunner\\assets\\Mummy_walk.png");
 
+                        enemyTex = SDL_CreateTextureFromSurface(renderer, surf);
+                        SDL_FreeSurface(surf);
 
                         enemies.clear();
                         for (auto& pos : maze.GetEnemySpawnPositions()) {
@@ -137,31 +137,33 @@ SDL_FreeSurface(surf);
                         }
                         mazeLoaded = true;
                     }
-                } else {
+                } else if (!gameWon && !gameLost) {
                     if (e.key.keysym.sym == SDLK_p) {
                         isPaused = !isPaused;
                     }
                 }
             }
-            if (!startScreen && !isPaused) player.HandleEvent(e);
-            if (gameWon) {
-    if (e.type == SDL_KEYDOWN && !e.key.repeat) {
-        if (e.key.keysym.sym == SDLK_RETURN) {
-            // Quay về màn hình Start
-            startScreen = true;
-            gameWon = false;
-            mazeLoaded = false;
-            enemies.clear();
-            explosions.clear();
-            playerExploded = false;
-            gameOverPending = false;
-        }
-    }
-}
 
+            if (!startScreen && !isPaused && !gameWon && !gameLost) player.HandleEvent(e);
+
+            if (gameWon || gameLost) {
+                if (e.type == SDL_KEYDOWN && !e.key.repeat) {
+                    if (e.key.keysym.sym == SDLK_RETURN) {
+                        startScreen = true;
+                        gameWon = false;
+                        gameLost = false;
+                        mazeLoaded = false;
+                        enemies.clear();
+                        explosions.clear();
+                        playerExploded = false;
+                        gameOverPending = false;
+                        isPaused = false;
+                    }
+                }
+            }
         }
 
-        if (!startScreen && !isPaused && mazeLoaded && !gameWon) {
+        if (!startScreen && !isPaused && mazeLoaded && !gameWon && !gameLost) {
             SDL_Rect oldRect = player.GetRect();
             int oldX = oldRect.x, oldY = oldRect.y;
             player.Update(deltaTime);
@@ -215,8 +217,8 @@ SDL_FreeSurface(surf);
                 bool active = false;
                 for (const auto& exp : explosions) if (exp.forGameOver) active = true;
                 if (!active) {
-                    SDL_ShowSimpleMessageBox(SDL_MESSAGEBOX_ERROR, "Game Over", "Bạn đã thua!", window);
-                    running = false;
+                    gameLost = true;
+                    isPaused = true;
                 }
             }
 
@@ -234,13 +236,13 @@ SDL_FreeSurface(surf);
                 maze.SetTile(row, col, 0);
             }
 
-            // Check Win
             for (int rr = 0; rr < Maze::MAP_ROWS; rr++) {
                 for (int cc = 0; cc < Maze::MAP_COLS; cc++) {
                     if (maze.GetTile(rr, cc) == 2) {
                         SDL_Rect tileRect = { cc * Maze::TILE_SIZE, rr * Maze::TILE_SIZE, Maze::TILE_SIZE, Maze::TILE_SIZE };
                         if (CheckCollisionInclusive(pRect, tileRect)) {
                             gameWon = true;
+                            isPaused = true;
                         }
                     }
                 }
@@ -271,16 +273,22 @@ SDL_FreeSurface(surf);
                 SDL_RenderCopy(renderer, explosionTex, &src, &dst);
             }
             if (isPaused) {
-                int pw = 300, ph = 150;
-                SDL_Rect panelRect = { (screenWidth - pw) / 2, (screenHeight - ph) / 2, pw, ph };
-                SDL_RenderCopy(renderer, startBackground, NULL, &panelRect);
-                RenderText(renderer, font, "PAUSED", screenWidth / 2, screenHeight / 2);
-            }
-            if (gameWon) {
-                int pw = 300, ph = 200;
-                SDL_Rect winRect = { (screenWidth - pw) / 2, (screenHeight - ph) / 2, pw, ph };
-                SDL_RenderCopy(renderer, winPanel, NULL, &winRect);
-            }
+    int pw = 300, ph = 150;
+    SDL_Rect panelRect = { (screenWidth - pw) / 2, (screenHeight - ph) / 2, pw, ph };
+
+    if (gameLost) {
+        SDL_RenderCopy(renderer, startBackground, NULL, &panelRect);
+        RenderText(renderer, font, "YOU LOSE", screenWidth / 2, screenHeight / 2);
+    } else if (gameWon) {
+        int winW = 300, winH = 200;
+        SDL_Rect winRect = { (screenWidth - winW) / 2, (screenHeight - winH) / 2, winW, winH };
+        SDL_RenderCopy(renderer, winPanel, NULL, &winRect);
+    } else {
+        SDL_RenderCopy(renderer, startBackground, NULL, &panelRect);
+        RenderText(renderer, font, "PAUSED", screenWidth / 2, screenHeight / 2);
+    }
+}
+
         }
 
         SDL_RenderPresent(renderer);
