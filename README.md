@@ -30,6 +30,8 @@ Maze Runner là một trò chơi 2D phiêu lưu trong mê cung, được phát t
 - Level 1: Đối đầu với bọ cạp (Scorpio) trong mê cung cơ bản.
 - Level 2: Đối đầu với xác ướp (Mummy) trong mê cung khó hơn.
 
+<img width="713" alt="{F062B358-C844-46E0-AE12-BECFC1D1E156}" src="https://github.com/user-attachments/assets/9679fa78-71a0-41fc-88dc-58845cf77b0d" />
+
 ## 3. Các thành phần trong game
 - **Người chơi (Player)**: Nhân vật chính, có khả năng di chuyển và bắn đạn.
 
