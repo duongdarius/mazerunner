@@ -11,12 +11,12 @@ void Enemy::Init(int x, int y, SDL_Texture* tex, int level) {
     this->frameIndex = 0;
     this->frameTimer = 0.0f;
 
-    if (level == 2) { // Level 2: Xác ướp
+    if (level == 2) {
         this->health = 10;
         this->maxHealth = 10;
         this->frameDelay = 0.1f;
         this->maxFrames = 6;
-    } else { // Level 1: Bọ cạp
+    } else {
         this->health = 4;
         this->maxHealth = 4;
         this->frameDelay = 0.15f;
@@ -64,14 +64,14 @@ void Enemy::Update(float deltaTime, const Maze& maze) {
 void Enemy::Render(SDL_Renderer* renderer) {
     if (!IsAlive()) return;
 
-    int frameWidth = 48; // mỗi frame rộng 48px
+    int frameWidth = 48;
     SDL_Rect src = { frameIndex * frameWidth, 0, frameWidth, 48 };
 
     int drawW, drawH;
-    if (maxFrames == 4) { // Bọ cạp
+    if (maxFrames == 4) {
         drawW = 48;
         drawH = 48;
-    } else { // Xác ướp
+    } else {
         drawW = 48;
         drawH = 48;
     }

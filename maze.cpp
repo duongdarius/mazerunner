@@ -19,11 +19,11 @@ Maze::~Maze() {
 }
 
 bool Maze::Init(SDL_Renderer* renderer, int level) {
-    floorTex = LoadTexture(renderer, "C:\\Projects\\SDL\\MazeRunner\\bin\\Debug\\assets\\floor.png");
-    wallTex  = LoadTexture(renderer, "C:\\Projects\\SDL\\MazeRunner\\bin\\Debug\\assets\\wall.png");
-    goalTex  = LoadTexture(renderer, "C:\\Projects\\SDL\\MazeRunner\\bin\\Debug\\assets\\goal.png");
-    ammoTex  = LoadTexture(renderer, "C:\\Projects\\SDL\\MazeRunner\\bin\\Debug\\assets\\ammo.png");
-    speedTex = LoadTexture(renderer, "C:\\Projects\\SDL\\MazeRunner\\bin\\Debug\\assets\\speed.png");
+    floorTex = LoadTexture(renderer, "C:\\Projects\\SDL\\MazeRunner\\assets\\floor.png");
+    wallTex  = LoadTexture(renderer, "C:\\Projects\\SDL\\MazeRunner\\assets\\wall.png");
+    goalTex  = LoadTexture(renderer, "C:\\Projects\\SDL\\MazeRunner\\assets\\goal.png");
+    ammoTex  = LoadTexture(renderer, "C:\\Projects\\SDL\\MazeRunner\\assets\\ammo.png");
+    speedTex = LoadTexture(renderer, "C:\\Projects\\SDL\\MazeRunner\\assets\\speed.png");
 
     if (level == 1) {
         const int defaultMap1[MAP_ROWS][MAP_COLS] = {

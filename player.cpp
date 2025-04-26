@@ -35,7 +35,7 @@ Player::~Player() {
 
 void Player::Init(SDL_Renderer* renderer) {
     for (int i = 0; i < 8; ++i) {
-        std::string path = "C:\\Projects\\SDL\\MazeRunner\\bin\\Debug\\assets\\player_run_" + std::to_string(i) + ".png";
+        std::string path = "C:\\Projects\\SDL\\MazeRunner\\assets\\player_run_" + std::to_string(i) + ".png";
         SDL_Surface* surf = IMG_Load(path.c_str());
         if (!surf) continue;
         SDL_Texture* tex = SDL_CreateTextureFromSurface(renderer, surf);
@@ -43,7 +43,7 @@ void Player::Init(SDL_Renderer* renderer) {
         runFrames.push_back(tex);
     }
 
-    SDL_Surface* surfBullet = IMG_Load("C:\\Projects\\SDL\\MazeRunner\\bin\\Debug\\assets\\bullet.png");
+    SDL_Surface* surfBullet = IMG_Load("C:\\Projects\\SDL\\MazeRunner\\assets\\bullet.png");
     if (surfBullet) {
         bulletTexture = SDL_CreateTextureFromSurface(renderer, surfBullet);
         SDL_FreeSurface(surfBullet);

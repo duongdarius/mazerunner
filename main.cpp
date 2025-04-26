@@ -68,13 +68,13 @@ int main(int argc, char* argv[]) {
     SDL_Window* window = SDL_CreateWindow("Maze Runner", SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, screenWidth, screenHeight, SDL_WINDOW_SHOWN);
     SDL_Renderer* renderer = SDL_CreateRenderer(window, -1, SDL_RENDERER_ACCELERATED);
 
-    Mix_Chunk* shootSound = Mix_LoadWAV("C:\\Projects\\SDL\\MazeRunner\\bin\\Debug\\assets\\shoot.wav");
-    Mix_Chunk* hitSound = Mix_LoadWAV("C:\\Projects\\SDL\\MazeRunner\\bin\\Debug\\assets\\hit.wav");
+    Mix_Chunk* shootSound = Mix_LoadWAV("C:\\Projects\\SDL\\MazeRunner\\assets\\shoot.wav");
+    Mix_Chunk* hitSound = Mix_LoadWAV("C:\\Projects\\SDL\\MazeRunner\\assets\\hit.wav");
     TTF_Font* font = TTF_OpenFont("C:\\Projects\\SDL\\MazeRunner\\bin\\Debug\\assets\\font.ttf", 48);
-    SDL_Texture* startBackground = IMG_LoadTexture(renderer, "C:\\Projects\\SDL\\MazeRunner\\bin\\Debug\\assets\\background.png");
-    SDL_Texture* winPanel = IMG_LoadTexture(renderer, "C:\\Projects\\SDL\\MazeRunner\\bin\\Debug\\assets\\you_win.png");
+    SDL_Texture* startBackground = IMG_LoadTexture(renderer, "C:\\Projects\\SDL\\MazeRunner\\assets\\background.png");
+    SDL_Texture* winPanel = IMG_LoadTexture(renderer, "C:\\Projects\\SDL\\MazeRunner\\assets\\you_win.png");
 
-    SDL_Surface* surf = IMG_Load("C:\\Projects\\SDL\\MazeRunner\\bin\\Debug\\assets\\explosion.png");
+    SDL_Surface* surf = IMG_Load("C:\\Projects\\SDL\\MazeRunner\\assets\\explosion.png");
     SDL_Texture* explosionTex = SDL_CreateTextureFromSurface(renderer, surf);
     SDL_FreeSurface(surf);
 
@@ -113,7 +113,7 @@ int main(int argc, char* argv[]) {
 
                         maze.Init(renderer, currentLevel);
 
-                        surf = IMG_Load("C:\\Projects\\SDL\\MazeRunner\\bin\\Debug\\assets\\player.png");
+                        surf = IMG_Load("C:\\Projects\\SDL\\MazeRunner\\assets\\player.png");
                         playerTex = SDL_CreateTextureFromSurface(renderer, surf);
                         SDL_FreeSurface(surf);
 
@@ -122,9 +122,9 @@ int main(int argc, char* argv[]) {
                         player.Init(renderer);
 
                         if (currentLevel == 1) {
-    surf = IMG_Load("C:\\Projects\\SDL\\MazeRunner\\bin\\Debug\\assets\\Scorpio_walk.png");
+    surf = IMG_Load("C:\\Projects\\SDL\\MazeRunner\\assets\\Scorpio_walk.png");
 } else {
-    surf = IMG_Load("C:\\Projects\\SDL\\MazeRunner\\bin\\Debug\\assets\\Mummy_walk.png");
+    surf = IMG_Load("C:\\Projects\\SDL\\MazeRunner\\assets\\Mummy_walk.png");
 }
 enemyTex = SDL_CreateTextureFromSurface(renderer, surf);
 SDL_FreeSurface(surf);
