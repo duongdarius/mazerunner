@@ -9,7 +9,7 @@ public:
     Maze();
     ~Maze();
 
-    bool Init(SDL_Renderer* renderer);
+    bool Init(SDL_Renderer* renderer, int level);
     void Render(SDL_Renderer* renderer);
 
     bool IsWall(int row, int col) const;

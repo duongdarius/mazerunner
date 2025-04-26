@@ -10,7 +10,7 @@ public:
     Enemy();
     ~Enemy();
 
-    void Init(int x, int y, SDL_Texture* tex);
+    void Init(int x, int y, SDL_Texture* tex, int level);
     void Update(float deltaTime, const Maze& maze);
     void Render(SDL_Renderer* renderer);
 
@@ -26,8 +26,13 @@ private:
     float speedX;
     int direction;
     int health;
-    static const int maxHealth = 4;
+    int maxHealth;
     SDL_Texture* texture;
+    int frameIndex;
+    float frameTimer;
+    float frameDelay;
+    int maxFrames;
+
 };
 
 #endif

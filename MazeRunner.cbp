@@ -33,6 +33,7 @@
 			<Add directory="C:/Users/DELL/OneDrive/Downloads/SDL2-devel-2.28.5-mingw/SDL2-2.28.5/x86_64-w64-mingw32/include" />
 			<Add directory="C:/Users/DELL/OneDrive/Downloads/SDL2_mixer-devel-2.6.3-mingw/SDL2_mixer-2.6.3/x86_64-w64-mingw32/include" />
 			<Add directory="C:/Users/DELL/OneDrive/Downloads/SDL2_image-devel-2.6.3-mingw/SDL2_image-2.6.3/x86_64-w64-mingw32/include" />
+			<Add directory="C:/Users/DELL/OneDrive/Downloads/SDL2_ttf-devel-2.24.0-mingw/SDL2_ttf-2.24.0/x86_64-w64-mingw32/include" />
 		</Compiler>
 		<Linker>
 			<Add option="-lmingw32" />
@@ -40,9 +41,11 @@
 			<Add library="SDL2" />
 			<Add library="SDL2_image" />
 			<Add library="SDL2_mixer" />
+			<Add library="SDL2_ttf" />
 			<Add directory="C:/Users/DELL/OneDrive/Downloads/SDL2-devel-2.28.5-mingw/SDL2-2.28.5/x86_64-w64-mingw32/lib" />
 			<Add directory="C:/Users/DELL/OneDrive/Downloads/SDL2_mixer-devel-2.6.3-mingw/SDL2_mixer-2.6.3/x86_64-w64-mingw32/lib" />
 			<Add directory="C:/Users/DELL/OneDrive/Downloads/SDL2_image-devel-2.6.3-mingw/SDL2_image-2.6.3/x86_64-w64-mingw32/lib" />
+			<Add directory="C:/Users/DELL/OneDrive/Downloads/SDL2_ttf-devel-2.24.0-mingw/SDL2_ttf-2.24.0/x86_64-w64-mingw32/lib" />
 		</Linker>
 		<Unit filename="enemy.cpp" />
 		<Unit filename="enemy.h" />

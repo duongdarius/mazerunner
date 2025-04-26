@@ -53,7 +53,7 @@ void Player::Init(SDL_Renderer* renderer) {
     this->y = 0;
     this->w = 64;
     this->h = 64;
-    this->speed = 5;
+    this->speed = 4;
     lastDir = RIGHT;
     moveLeft = moveRight = moveUp = moveDown = false;
 }
@@ -116,7 +116,7 @@ void Player::Update(float deltaTime) {
     if (moveUp)    moveY -= 1;
     if (moveDown)  moveY += 1;
 
-    float currentSpeed = speedBoost ? speed * 1.8f : speed;
+    float currentSpeed = speedBoost ? speed * 1.5f : speed;
     float spf = currentSpeed * 60.0f * deltaTime;
     x += (int)(moveX * spf);
     y += (int)(moveY * spf);
@@ -178,7 +178,7 @@ void Player::Shoot() {
             b.rect.h = 12;
             b.rect.y = y + h / 2 - b.rect.h / 2 + 8;
 
-            int delayOffset = i * 20; // viên 2 lệch 20px
+            int delayOffset = i * 30;
 
             if (lastDir == LEFT) {
                 b.rect.x = x - delayOffset;
