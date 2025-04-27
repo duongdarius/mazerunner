@@ -1,5 +1,5 @@
 # mazerunner
-Review Code & Test Game:
+Review Code & Test Game: https://drive.google.com/file/d/1S8dLPxsPvm-MQxz-LRIybmXRNxuPIggj/view?usp=drive_link
 
 ## I. GIỚI THIỆU GAME:
 
